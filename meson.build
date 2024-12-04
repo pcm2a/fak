@@ -14,6 +14,8 @@ sources_central = [
     'src/split_central.c',
     'src/keymap.c',
     'src/key_event_queue.c',
+    'src/neo.c',
+    'src/delay.c'
 ]
 
 sources_peripheral = [

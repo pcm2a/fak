@@ -46,6 +46,8 @@ let h_file = m%"
 
   #include "keyboard.h"
 
+  #include "neo.h"
+
   void keyboard_init_user();
   void keyboard_scan_user();
 "% in
@@ -210,6 +212,15 @@ m%"
     |> util.array.join "\n"
   }
 
+  // Update NeoPixels
+  void NEO_update(void) {
+    EA = 0;                                   // disable interrupts
+    NEO_writeColor(0xff, 0x66, 0x66);               // NeoPixel 1 lights up red
+    NEO_writeColor(0xff, 0x66, 0x66);               // NeoPixel 1 lights up red
+    NEO_writeColor(0xff, 0x66, 0x66);               // NeoPixel 1 lights up red
+    EA = 1;                                   // enable interrupts
+  }
+
   void keyboard_init_user() {
   %{
     [[ir.kscan.cols, "COL"], [ir.kscan.rows, "ROW"]]
@@ -223,6 +234,9 @@ m%"
     )
     |> util.array.join "\n"
   }
+    NEO_init();
+    NEO_latch();
+    NEO_update();
   }
 
   static void matrix_switch_delay() {
